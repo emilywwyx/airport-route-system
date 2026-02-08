@@ -1,5 +1,7 @@
+# priority queue for candidate paths
 import heapq
 import random
+# for visualization
 import matplotlib.pyplot as plt
 
 from algorithms_v2 import dijkstra_from_src_list
@@ -25,10 +27,12 @@ def reconstruct_path(start, target, prev):
         return None
     return path
 
-
+# path = list of node indices
+# adj = adjacency list
+# returns total weight sum along the path
 def path_cost(path, adj):
     cost = 0.0
-    for i in range(len(path) - 1):
+    for i in range(len(path) - 1):          # number of edges = len(path) - 1
         u = path[i]
         v = path[i + 1]
         found = False

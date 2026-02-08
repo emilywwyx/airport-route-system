@@ -25,7 +25,7 @@ from algorithms_v2 import (
 
 INF = float("inf")
 
-
+# runs functions multiple times, reports best/average time
 def time_algorithm(func, *args, repeat=5):
     times = []
     for _ in range(repeat):
@@ -213,27 +213,48 @@ def plot_phase(results, title, show_astar=False):
     plt.tight_layout()
 
 
-def plot_comparison(phase1_results, phase2_results, algo="dijk"):
-    key = {
-        "bfs": "BFS",
-        "dfs": "DFS",
-        "dijk": "Dijkstra",
-    }[algo]
-
+def plot_comparison_all(phase1_results, phase2_results):
     p1 = {r["name"]: r for r in phase1_results}
     p2 = {r["name"]: r for r in phase2_results}
     labels = ["small", "medium", "large"]
 
     Ns = [p1[l]["n"] for l in labels]
-    y1 = [p1[l][algo] * 1000 for l in labels]
-    y2 = [p2[l][algo] * 1000 for l in labels]
+
+    # one color for Phase 1, one color for Phase 2
+    phase1_color = "black"
+    phase2_color = "0.5"  # gray
+
+    algos = [
+        ("bfs", "BFS", "o", "-"),
+        ("dfs", "DFS", "s", "--"),
+        ("dijk", "Dijkstra", "^", "-."),
+    ]
 
     plt.figure()
-    plt.plot(Ns, y1, marker="o", label=f"Phase 1 {key}")
-    plt.plot(Ns, y2, marker="s", label=f"Phase 2 {key}")
+
+    for key, name, marker, ls in algos:
+        y1 = [p1[l][key] * 1000 for l in labels]
+        y2 = [p2[l][key] * 1000 for l in labels]
+
+        plt.plot(
+            Ns, y1,
+            marker=marker,
+            linestyle=ls,
+            color=phase1_color,
+            label=f"Phase 1 {name}",
+        )
+
+        plt.plot(
+            Ns, y2,
+            marker=marker,
+            linestyle=ls,
+            color=phase2_color,
+            label=f"Phase 2 {name}",
+        )
+
     plt.xlabel("Number of vertices N")
     plt.ylabel("Runtime (ms)")
-    plt.title(f"Phase 1 vs Phase 2 ({key})")
+    plt.title("Phase 1 vs Phase 2 (BFS / DFS / Dijkstra)")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
@@ -245,6 +266,6 @@ if __name__ == "__main__":
 
     plot_phase(phase1_results, "Phase 1: adjacency-matrix implementation")
     plot_phase(phase2_results, "Phase 2: adjacency-list + A* implementation", show_astar=True)
-    plot_comparison(phase1_results, phase2_results, algo="dijk")
+    plot_comparison_all(phase1_results, phase2_results)
 
     plt.show()
