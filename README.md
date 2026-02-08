@@ -48,7 +48,10 @@ A straightforward implementation to establish correctness and baseline performan
 - Execution time logging for comparison
 
 **Phase illustration**
-![Phase 1](phase1.png)
+
+<p align="center">
+  <img src="phase1.png" alt="Phase 1" width="700" />
+</p>
 
 ---
 
@@ -62,7 +65,10 @@ A refactored version focused on scalability and runtime efficiency.
 - Performance-focused routing utilities
 
 **Phase illustration**
-![Phase 2](phase2.png)
+
+<p align="center">
+  <img src="phase2.png" alt="Phase 2" width="700" />
+</p>
 
 ---
 
@@ -77,9 +83,14 @@ A detailed empirical evaluation comparing the two implementations.
 - Speedup calculations between implementations
 
 **Example benchmark / comparison figures**
-![Dijkstra Comparison](Dijkstra_compare.png)
 
-![Figure 1](Figure_1.png)
+<p align="center">
+  <img src="Dijkstra_compare.png" alt="Dijkstra Comparison" width="700" />
+</p>
+
+<p align="center">
+  <img src="Figure_1.png" alt="Figure 1" width="700" />
+</p>
 
 ---
 
