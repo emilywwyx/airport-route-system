@@ -1,100 +1,119 @@
-# Airport-Route-System
+# Airport Route System
 
-**Programming Assignment: Graph Algorithms & Performance Analysis**
+A Python-based airport route optimization system that models airline networks as graphs and evaluates multiple path-finding algorithms under different performance constraints.
 
-> You are expected to complete this work via pair programming. If you're unfamiliar with pair programming, please Google.
+This project explores how graph representation choices and algorithmic optimizations affect scalability, runtime, and memory usage when routing between airports.
 
-## Overview
+---
 
-Build an airport route optimization system that finds paths between airports. You will implement graph representations and path-finding algorithms, then analyze and optimize their performance.
+## Project Overview
 
-This is a **three-phase assignment**. Each phase builds upon the previous with stricter performance requirements.
+The Airport Route System computes routes between airports using classical graph algorithms and compares their performance across datasets of increasing size.
 
-## Problem Description
+Two implementations are provided:
 
-You are building a route planning system for an airline consortium. The system must find routes between airports efficiently. Your implementation will be tested against increasingly large datasets with strict time limits.
+- **Baseline implementation** using adjacency matrices
+- **Optimized implementation** using data structures suitable for sparse graphs
 
-### Datasets
+The system is designed to support both shortest-path queries and performance benchmarking under realistic airline network sizes.
 
-| Dataset | Airports | Routes | Time Limit |
-|---------|----------|--------|------------|
-| Small   | 24       | ~200   | No limit   |
-| Medium  | 200      | ~3,000 | < 100ms    |
-| Large   | 500      | ~15,000| < 50ms     |
+---
 
-## Phase 1: Baseline Implementation
+## Problem Setting
 
-Implement the graph and path-finding algorithms. This establishes your baseline for performance comparison.
+Airports are modeled as graph nodes and flight routes as edges.  
+The system must efficiently compute routes as the network grows from small to large scale.
 
-### Requirements
+### Dataset Scale
 
-1. **Graph Representation:** Implement using an adjacency matrix.
-2. **BFS:** Implement Breadth-First Search.
-3. **DFS:** Implement Depth-First Search.
-4. **Dijkstra:** Implement Dijkstra's shortest path algorithm.
-5. **Performance Logging:** Record and report execution times.
+| Dataset | Airports | Routes | Characteristics |
+|--------|----------|--------|----------------|
+| Small  | 24       | ~200   | Development & correctness |
+| Medium| 200      | ~3,000 | Performance-sensitive |
+| Large | 500      | ~15,000| Stress testing & optimization |
 
-## Phase 2: Optimized Implementation
+---
 
-Refactor your implementation to meet the performance requirements for larger datasets. You must identify the bottlenecks in Phase 1 and choose appropriate data structures to address them.
+## Implementation Phases
 
-### Requirements
+### Phase 1: Baseline System
 
-1. **Graph Representation:** Choose a representation suitable for sparse graphs.
-2. **Algorithm Optimization:** Optimize each algorithm to achieve better time complexity.
-3. **A\* Search:** Implement A* search with an appropriate heuristic for geographic routing.
-4. **Performance Targets:** Your implementation must pass the automated benchmarks within the specified time limits.
+A straightforward implementation to establish correctness and baseline performance.
 
-## Phase 3: Analysis
+**Features**
+- Adjacency matrix graph representation
+- Breadth-First Search (BFS)
+- Depth-First Search (DFS)
+- Dijkstra’s shortest path algorithm
+- Execution time logging for comparison
 
-### Empirical Analysis
+---
 
-1. Compare execution times between Phase 1 and Phase 2 implementations.
-2. Analyze how performance scales with graph size.
-3. Compare memory usage between implementations.
-4. Calculate and report speedup factors.
+### Phase 2: Optimized System
 
-### Advanced Features (Optional)
+A refactored version focused on scalability and runtime efficiency.
 
-- K-shortest paths
-- Constrained routing (maximum stops)
-- Batch queries (single source to all destinations)
+**Improvements**
+- Adjacency list representation for sparse graphs
+- Optimized algorithm implementations
+- A* search with heuristic-based routing
+- Designed to meet strict runtime constraints on large datasets
 
-## Deliverables
+---
 
-### Code
+### Phase 3: Performance Analysis
+
+A detailed empirical evaluation comparing the two implementations.
+
+**Analysis includes**
+- Runtime comparison across dataset sizes
+- Scaling behavior as graph size increases
+- Memory usage trade-offs
+- Speedup calculations between implementations
+
+---
+
+## Project Structure
 
 | File | Description |
-|------|-------------|
-| `graph_matrix.py` | Phase 1 graph implementation |
-| `graph_list.py` | Phase 2 graph implementation |
-| `algorithms_v1.py` | Phase 1 algorithm implementations |
-| `algorithms_v2.py` | Phase 2 algorithm implementations |
-| `benchmark.py` | Performance testing |
-| `main.py` | GUI application |
+|------|------------|
+| `graph_matrix.py` | Adjacency matrix graph (baseline) |
+| `graph_list.py` | Adjacency list graph (optimized) |
+| `algorithms_v1.py` | Baseline algorithms |
+| `algorithms_v2.py` | Optimized algorithms |
+| `benchmark.py` | Performance benchmarking |
+| `main.py` | Application entry point |
 
-### Written Report
+---
 
-Your report (2-4 pages) must include:
+## Key Features
 
-1. **Complexity Analysis:** Derive and explain the time complexity of each implementation.
-2. **Experimental Results:** Graphs comparing Phase 1 vs Phase 2 performance.
-3. **Discussion:** Explain your optimization choices and their effects.
-4. **Trade-offs:** When might your Phase 1 implementation be preferred?
+- Modular graph representations
+- Multiple path-finding strategies
+- Performance benchmarking framework
+- Extensible design for advanced routing features
 
-## Academic Integrity
+### Optional Extensions
+- K-shortest paths
+- Constrained routing (e.g., max stops)
+- Batch routing queries
 
-All code and written analysis must be your own. You may use Python's standard library but **no external graph libraries** (NetworkX, igraph, etc.). The autograder will check for code similarity.
+---
 
-## Submission
+## Technical Notes
 
-**Due Date:** 12/13/2025
+- Implemented in **Python**
+- Uses only the Python standard library
+- No external graph libraries (e.g., NetworkX)
 
-1. Submit a ZIP file containing all Python files and your report PDF to **Canvas**.
-2. **Continuously push changes to the GitHub repository provided to your team in ECE590-F25 Organization**
+---
 
-## Oral Presentation
+## Motivation
 
-**Date:** 12/14/2025
+This project demonstrates how algorithmic choices and data structures directly impact real-world system performance. It highlights trade-offs between simplicity, memory usage, and scalability in graph-based systems.
 
-Each team will have 10 minutes.
+---
+
+## License
+
+This project is provided for educational and research purposes.
